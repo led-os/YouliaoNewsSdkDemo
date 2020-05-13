@@ -3,20 +3,20 @@
 ## 一、增加依赖
 
 1. 在主project的`allprojects` -> `repositories`添加
-
+    `注意这里的url有修改`
    ```groovy
    allprojects {
        repositories {
            google()
            jcenter()
          	// 增加下面一行
-           maven { url "https://gitlab.droi.com/Youliao/Sdk/raw/master/"}
+           maven { url "https://gitlab.droi.cn/youliao/Sdk/raw/master/"}
        }
    }
    ```
 
 2. 在app工程的`dependencies`添加
-
+    `注意这里的版本号有修改`
    ```groovy
    dependencies {
     // 增加下面依赖
@@ -26,7 +26,7 @@
     // 如果使用oaid sdk版本是 1.0.13，请添加此依赖
     implementation 'com.youliao.sdk:msa:1.0.1'
     // 如果使用的是高德地图，请添加此依赖
-    implementation 'com.youliao.sdk:amaplocation:1.0.1'
+    implementation 'com.youliao.sdk:amaplocation:1.0.2'
    }
    ```
 
@@ -44,9 +44,9 @@
    YouliaoNewsSdk.init(this, "6346e1a6f5fc82ed", "5c16f8d71854b47601d3a31c87b0e0ab")
    	.setShareAppId("1107937097", "wx83f749fd20846f7f"); // qqappid，wxappid
    
-   // 此方法会请求网络，如果有流量提醒弹框，可以在用户点击确认后再调用。不一定放在application中
+   // 注意：此方法会请求网络，如果有流量提醒弹框，可以在用户点击确认后再调用。不一定放在application中
    YouliaoNewsSdk.requestSdkConfig();
-   // 此方法用于获取用户所在城市，请在获取定位权限后调用
+   // 注意：此方法用于获取用户所在城市，请在获取定位权限后调用
    YouliaoNewsSdk.requestLocation();
    
    // 此方法用于初始化adroi sdk，如果已经接入过adroi sdk或不需要adroi广告，请忽略
@@ -62,9 +62,9 @@
      init(this@MyApplication, "6346e1a6f5fc82ed", "5c16f8d71854b47601d3a31c87b0e0ab")
      setShareAppId("1107937097","wx83f749fd20846f7f")
      
-     // 此方法会请求网络，如果有流量提醒弹框，可以在用户点击确认后再调用。不一定放在application中
+     // 注意：此方法会请求网络，如果有流量提醒弹框，可以在用户点击确认后再调用。不一定放在application中
      requestSdkConfig()
-     // 此方法用于获取用户所在城市，请在获取定位权限后调用
+     // 注意：此方法用于获取用户所在城市，请在获取定位权限后调用
      requestLocation()
      
      // 此方法用于初始化adroi sdk，如果已经接入过adroi sdk或不需要adroi广告，请忽略
