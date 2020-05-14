@@ -20,13 +20,7 @@
    ```groovy
    dependencies {
     // 增加下面依赖
-    implementation 'com.youliao.sdk:news:1.0.2'
-    // 如果使用oaid sdk版本是 1.0.10，请添加此依赖
-    implementation 'com.youliao.sdk:msaold:1.0.1'
-    // 如果使用oaid sdk版本是 1.0.13，请添加此依赖
-    implementation 'com.youliao.sdk:msa:1.0.1'
-    // 如果使用的是高德地图，请添加此依赖
-    implementation 'com.youliao.sdk:amaplocation:1.0.2'
+    implementation 'com.youliao.sdk:news:1.0.3-beta01'
    }
    ```
 
@@ -40,9 +34,13 @@
 
    ```java
    // java
-   // 此方法不会请求网络，请放在Application中调用
+   // 此方法不会请求网络，请放在Application中调用，appid和secret参数会在之后提供
    YouliaoNewsSdk.init(this, "6346e1a6f5fc82ed", "5c16f8d71854b47601d3a31c87b0e0ab")
    	.setShareAppId("1107937097", "wx83f749fd20846f7f"); // qqappid，wxappid
+    // 可以依赖'com.youliao.sdk:msa:1.0.3-beta01'，或者自行实现OaidProvider接口
+    .setOaidProvider(new MasOaidProvider(this))
+    // 可以依赖'com.youliao.sdk:amaplocation:1.0.3-beta01'，或者自行实现LocationProvider接口
+    .setLocationProvider(new AMapLocationProvider(this));
    
    // 注意：此方法会请求网络，如果有流量提醒弹框，可以在用户点击确认后再调用。不一定放在application中
    YouliaoNewsSdk.requestSdkConfig();
@@ -58,10 +56,13 @@
    ```kotlin
    // kotlin
    YouliaoNewsSdk.apply {
-     // 此方法不会请求网络，请放在Application中调用
+     // 此方法不会请求网络，请放在Application中调用，appid和secret参数会在之后提供
      init(this@MyApplication, "6346e1a6f5fc82ed", "5c16f8d71854b47601d3a31c87b0e0ab")
      setShareAppId("1107937097","wx83f749fd20846f7f")
-     
+     // 可以依赖'com.youliao.sdk:msa:1.0.3-beta01'，或者自行实现OaidProvider接口
+     setOaidProvider(MasOaidProvider(this@MyApplication))
+     // 可以依赖'com.youliao.sdk:amaplocation:1.0.3-beta01'，或者自行实现LocationProvider接口
+     setLocationProvider(AMapLocationProvider(this@MyApplication))
      // 注意：此方法会请求网络，如果有流量提醒弹框，可以在用户点击确认后再调用。不一定放在application中
      requestSdkConfig()
      // 注意：此方法用于获取用户所在城市，请在获取定位权限后调用
@@ -147,7 +148,7 @@
 3. 更换loading图
    在`res`->`mipmap`下覆盖`youliao_loading_logo.png`文件
    `注意`,每个dpi文件夹下都要覆盖
-  
+
 ## 四、其他
 1. for 最美天气
 

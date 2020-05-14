@@ -3,6 +3,9 @@ package com.youliao.news
 import android.app.Application
 import android.content.Context
 import android.support.multidex.MultiDex
+import com.youliao.sdk.location.AMapLocationProvider
+import com.youliao.sdk.msa.MasOaidProvider
+import com.youliao.sdk.msa.Msa
 import com.youliao.sdk.news.YouliaoNewsSdk
 
 class  MyApplication: Application() {
@@ -13,6 +16,10 @@ class  MyApplication: Application() {
             init(this@MyApplication, "6346e1a6f5fc82ed", "5c16f8d71854b47601d3a31c87b0e0ab")
             showDebugLog(true)
             setShareAppId("1107990332","wx8b0b139d1103eaa0")
+            // 可以依赖'com.youliao.sdk:msa:1.0.3-beta01'，或者自行实现OaidProvider接口
+            setOaidProvider(MasOaidProvider(this@MyApplication))
+            // 可以依赖'com.youliao.sdk:amaplocation:1.0.3-beta01'，或者自行实现LocationProvider接口
+            setLocationProvider(AMapLocationProvider(this@MyApplication))
             // 此方法会请求网络，如果有流量提醒弹框，可以在用户点击确认后再调用。不一定放在application中
             requestSdkConfig()
             // 此方法用于初始化adroi sdk，如果已经接入过adroi sdk或不需要adroi广告，请忽略
@@ -27,6 +34,6 @@ class  MyApplication: Application() {
         MultiDex.install(this)
         // 此方法用户初始化oaid sdk，如果已经接入过msa sdk，请忽略
         // 请放在attachBaseContext中
-        YouliaoNewsSdk.initOaid(base)
+        Msa.initOaid(base)
     }
 }

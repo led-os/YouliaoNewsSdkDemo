@@ -60,10 +60,9 @@ dependencies {
     implementation 'com.android.support:design:28.0.0'
     implementation 'com.android.support:multidex:1.0.3'
 
-    implementation 'com.youliao.sdk:news:1.0.2'
-    implementation 'com.youliao.sdk:amaplocation:1.0.2'
-    implementation 'com.youliao.sdk:msa:1.0.1'
-//    implementation 'com.youliao.sdk:msa:1.0.0'
+    implementation 'com.youliao.sdk:news:1.0.3-beta01'
+    implementation 'com.youliao.sdk:amaplocation:1.0.3-beta01'
+    implementation 'com.youliao.sdk:msa:1.0.3-beta01'
     // adroi
     implementation files('libs/adroi.poly.sdk_3.2.3.jar')
     implementation(name: 'GDTSDK.unionNormal.4.176.1046', ext: 'aar')
