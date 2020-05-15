@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.youliao.news.R
-import com.youliao.sdk.news.presentation.NewsFragment
+import com.youliao.sdk.news.ui.NewsFragment
 
 class NewsTabFragment : Fragment() {
 

@@ -8,7 +8,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.FrameLayout;
 
-import com.youliao.sdk.news.presentation.NewsFragment;
+import com.youliao.sdk.news.ui.NewsFragment;
 
 public class JavaFrameLayout extends FrameLayout {
     private boolean isInPosition = false;

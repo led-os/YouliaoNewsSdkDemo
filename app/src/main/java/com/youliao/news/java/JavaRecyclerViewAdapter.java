@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.youliao.news.R;
-import com.youliao.sdk.news.presentation.NewsFragment;
+import com.youliao.sdk.news.ui.NewsFragment;
 
 public class JavaRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
