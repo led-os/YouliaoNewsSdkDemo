@@ -89,7 +89,7 @@
      MultiDex.install(this);
      // 此方法用于初始化oaid sdk，如果已经接入过oaid sdk，请忽略
      // 请放在attachBaseContext中
-     YouliaoNewsSdk.initOaid(base);
+     Msa.initOaid(base);
    }
    ```
 
@@ -100,7 +100,7 @@
      MultiDex.install(this)
      // 此方法用户初始化oaid sdk，如果已经接入过oaid sdk，请忽略
      // 请放在attachBaseContext中
-     YouliaoNewsSdk.initOaid(base)
+     Msa.initOaid(base)
    }
    ```
 
