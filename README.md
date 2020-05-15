@@ -20,11 +20,11 @@
    ```groovy
    dependencies {
        // 增加下面依赖
-       implementation 'com.youliao.sdk:news:1.0.3-beta04'
+       implementation 'com.youliao.sdk:news:1.0.3-beta05'
        // 如果使用glide3.x，增加依赖
-       implementation 'com.youliao.sdk:glide3:1.0.3-beta04'
+       implementation 'com.youliao.sdk:glide3:1.0.3-beta05'
        // 如果使用glide4.x，增加依赖
-       implementation 'com.youliao.sdk:glide4:1.0.3-beta04'
+       implementation 'com.youliao.sdk:glide4:1.0.3-beta05'
    }
    ```
 
@@ -41,9 +41,9 @@
    // 此方法不会请求网络，请放在Application中调用，appid和secret参数会在之后提供
    YouliaoNewsSdk.init(this, "6346e1a6f5fc82ed", "5c16f8d71854b47601d3a31c87b0e0ab")
    	.setShareAppId("1107937097", "wx83f749fd20846f7f"); // qqappid，wxappid
-    // 可以依赖'com.youliao.sdk:msa:1.0.3-beta04'，或者自行实现OaidProvider接口
+    // 可以依赖'com.youliao.sdk:msa:1.0.3-beta05'，或者自行实现OaidProvider接口
     .setOaidProvider(new MasOaidProvider(this))
-    // 可以依赖'com.youliao.sdk:amaplocation:1.0.3-beta04'，或者自行实现LocationProvider接口
+    // 可以依赖'com.youliao.sdk:amaplocation:1.0.3-beta05'，或者自行实现LocationProvider接口
     .setLocationProvider(new AMapLocationProvider(this));
    
    // 注意：此方法会请求网络，如果有流量提醒弹框，可以在用户点击确认后再调用。不一定放在application中
@@ -63,9 +63,9 @@
      // 此方法不会请求网络，请放在Application中调用，appid和secret参数会在之后提供
      init(this@MyApplication, "6346e1a6f5fc82ed", "5c16f8d71854b47601d3a31c87b0e0ab")
      setShareAppId("1107937097","wx83f749fd20846f7f")
-     // 可以依赖'com.youliao.sdk:msa:1.0.3-beta04'，或者自行实现OaidProvider接口
+     // 可以依赖'com.youliao.sdk:msa:1.0.3-beta05'，或者自行实现OaidProvider接口
      setOaidProvider(MasOaidProvider(this@MyApplication))
-     // 可以依赖'com.youliao.sdk:amaplocation:1.0.3-beta04'，或者自行实现LocationProvider接口
+     // 可以依赖'com.youliao.sdk:amaplocation:1.0.3-beta05'，或者自行实现LocationProvider接口
      setLocationProvider(AMapLocationProvider(this@MyApplication))
      // 注意：此方法会请求网络，如果有流量提醒弹框，可以在用户点击确认后再调用。不一定放在application中
      requestSdkConfig()
@@ -159,4 +159,7 @@
    由于最美天气接入的特殊性，提供简单的示例。需要最美的同学根据实际情况，进行简单的调整。
 
    示例请见demo下的java文件夹
+
+2. 关于混淆
+    混淆规则已经
 
