@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
+import com.youliao.news.java.JavaMainActivity
 import com.youliao.sdk.news.YouliaoNewsSdk
 
 class SplashActivity : AppCompatActivity() {
@@ -58,7 +59,7 @@ class SplashActivity : AppCompatActivity() {
     private fun goToMain() {
         startActivity(Intent(this, MainActivity::class.java))
         // 此方法用于获取用户所在城市
-        YouliaoNewsSdk.requestLocation()
+//        YouliaoNewsSdk.requestLocation()
         finish()
     }
 }

@@ -1,11 +1,9 @@
 package com.youliao.news.java;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,16 +18,15 @@ public class JavaRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
     private Context mContext;
     private FragmentManager fragmentManager;
 
-    public JavaRecyclerViewAdapter(Context context) {
+    public JavaRecyclerViewAdapter(Context context,FragmentManager fragmentManager2) {
         mContext = context;
-        AppCompatActivity activity = (AppCompatActivity) mContext;
-        fragmentManager = activity.getSupportFragmentManager();
+        fragmentManager = fragmentManager2;
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        if (i < 3) {
+        if (i < 10) {
             View view = LayoutInflater.from(mContext)
                     .inflate(R.layout.layout_item_image, viewGroup, false);
             return new ImageViewHolder(view);
@@ -93,29 +90,23 @@ public class JavaRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
         if (javaFragmentData.fragment != null) {
             return javaFragmentData.fragment;
         }
-        Fragment fragment = fragmentManager.findFragmentByTag(javaFragmentData.getTag());
-        if (fragment == null) {
-            fragment = instantiate(javaFragmentData);
-            fragment.setMenuVisibility(false);
-            fragment.setUserVisibleHint(false);
-        }
+        Fragment fragment = instantiate(javaFragmentData);
+//        Fragment fragment = fragmentManager.findFragmentByTag(javaFragmentData.getTag());
+//        if (fragment == null) {
+//            fragment = instantiate(javaFragmentData);
+//            fragment.setMenuVisibility(false);
+//            fragment.setUserVisibleHint(false);
+//        }
         return fragment;
     }
 
     private Fragment instantiate(JavaFragmentData javaFragmentData) {
-        Fragment fragment = NewsFragment.newInstance();
-        // tab 类型配置 start==
-        Bundle bundle = new Bundle();
-        bundle.putString(NewsFragment.ARGUMENT_TYPE, "news"); // 默认为news，只有一个信息流页面时可以不设置
-        bundle.putBoolean(NewsFragment.ARGUMENT_SWITCH, true); // 是否显示右下角的刷新按钮
-        // tab 类型配置 end==
-        fragment.setArguments(bundle);
-        return fragment;
+        return NewsFragment.newInstance("news", true);
     }
 
     @Override
     public int getItemCount() {
-        return 4;
+        return 11;
     }
 
     class ImageViewHolder extends RecyclerView.ViewHolder {

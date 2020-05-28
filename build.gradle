@@ -20,9 +20,7 @@ allprojects {
     repositories {
         google()
         jcenter()
-        maven {
-            url "https://gitlab.droi.cn/youliao/Sdk/raw/master/"
-        }
+        maven { url "https://github.com/YouliaoSdk/Sdk/raw/master/"}
     }
 }
 

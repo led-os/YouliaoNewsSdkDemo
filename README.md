@@ -3,28 +3,26 @@
 ## 一、增加依赖
 
 1. 在主project的`allprojects` -> `repositories`添加
-    `注意这里的url有修改`
    ```groovy
    allprojects {
        repositories {
            google()
            jcenter()
          	// 增加下面一行
-           maven { url "https://gitlab.droi.cn/youliao/Sdk/raw/master/"}
+           maven { url "https://github.com/YouliaoSdk/Sdk/raw/master/"}
        }
    }
    ```
 
 2. 在app工程的`dependencies`添加
-    `注意这里的版本号有修改`
    ```groovy
    dependencies {
        // 增加下面依赖
-       implementation 'com.youliao.sdk:news:1.0.3-beta07'
+       implementation 'com.youliao.sdk:news:1.0.3-rc04'
        // 如果使用glide3.x，增加依赖
-       implementation 'com.youliao.sdk:glide3:1.0.3-beta07'
+       implementation 'com.youliao.sdk:glide3:1.0.3-rc04'
        // 如果使用glide4.x，增加依赖
-       implementation 'com.youliao.sdk:glide4:1.0.3-beta07'
+       implementation 'com.youliao.sdk:glide4:1.0.3-rc04'
    }
    ```
 
@@ -38,12 +36,13 @@
 
    ```java
    // java
-   // 此方法不会请求网络，请放在Application中调用，appid和secret参数会在之后提供
-   YouliaoNewsSdk.init(this, "6346e1a6f5fc82ed", "5c16f8d71854b47601d3a31c87b0e0ab")
-   	.setShareAppId("1107937097", "wx83f749fd20846f7f"); // qqappid，wxappid
-    // 可以依赖'com.youliao.sdk:msa:1.0.3-beta07'，或者自行实现OaidProvider接口
+   // 此方法不会请求网络，请放在Application中调用，appid和secret参数由有料提供
+   YouliaoNewsSdk.init(this, "appid", "apikey") 
+   	.setShareAppId("qqappid", "wxappid"); // qqappid，wxappid
+    // 可以依赖'com.youliao.sdk:msa:1.0.3-rc04'，或者自行实现OaidProvider接口
+    // 当前有料sdk接入的oaid sdk版本是 1.0.13
     .setOaidProvider(new MasOaidProvider(this))
-    // 可以依赖'com.youliao.sdk:amaplocation:1.0.3-beta07'，或者自行实现LocationProvider接口
+    // 可以依赖'com.youliao.sdk:amaplocation:1.0.3-rc04'，或者自行实现LocationProvider接口
     .setLocationProvider(new AMapLocationProvider(this));
    
    // 注意：此方法会请求网络，如果有流量提醒弹框，可以在用户点击确认后再调用。不一定放在application中
@@ -52,20 +51,21 @@
    YouliaoNewsSdk.requestLocation();
    
    // 此方法用于初始化adroi sdk，如果已经接入过adroi sdk或不需要adroi广告，请忽略
-   YouliaoNewsSdk.initAdroi("a8b3a9047", "ADroi广告demo")
+   YouliaoNewsSdk.initAdroi("adroi-appid", "ADroi广告demo")
    // 此方法用于初始化穿山甲sdk，如果已经接入过穿山甲sdk或不需要穿山甲广告，请忽略
-   YouliaoNewsSdk.initBytedanceAd("5011189", "有料看看_测试_android");
+   YouliaoNewsSdk.initBytedanceAd("bytedance-appid", "有料看看_测试_android");
    ```
 
    ```kotlin
    // kotlin
    YouliaoNewsSdk.apply {
      // 此方法不会请求网络，请放在Application中调用，appid和secret参数会在之后提供
-     init(this@MyApplication, "6346e1a6f5fc82ed", "5c16f8d71854b47601d3a31c87b0e0ab")
-     setShareAppId("1107937097","wx83f749fd20846f7f")
-     // 可以依赖'com.youliao.sdk:msa:1.0.3-beta07'，或者自行实现OaidProvider接口
+     init(this@MyApplication, "appid", "apikey")
+     setShareAppId("qqappid","wxappid")
+     // 可以依赖'com.youliao.sdk:msa:1.0.3-rc04'，或者自行实现OaidProvider接口
+     // 当前有料sdk接入的oaid sdk版本是 1.0.13
      setOaidProvider(MasOaidProvider(this@MyApplication))
-     // 可以依赖'com.youliao.sdk:amaplocation:1.0.3-beta07'，或者自行实现LocationProvider接口
+     // 可以依赖'com.youliao.sdk:amaplocation:1.0.3-rc04'，或者自行实现LocationProvider接口
      setLocationProvider(AMapLocationProvider(this@MyApplication))
      // 注意：此方法会请求网络，如果有流量提醒弹框，可以在用户点击确认后再调用。不一定放在application中
      requestSdkConfig()
@@ -73,9 +73,9 @@
      requestLocation()
      
      // 此方法用于初始化adroi sdk，如果已经接入过adroi sdk或不需要adroi广告，请忽略
-     initAdroi("a8b3a9047", "ADroi广告demo")
+     initAdroi("adroi-appid", "ADroi广告demo")
      // 此方法用于初始化穿山甲sdk，如果已经接入过穿山甲sdk或不需要穿山甲广告，请忽略
-     initBytedanceAd("5011189", "有料看看_测试_android")
+     initBytedanceAd("bytedance-appid", "有料看看_测试_android")
    }
    ```
 
@@ -112,13 +112,9 @@
    // java
    FragmentManager fragmentManager = getSupportFragmentManager();
    FragmentTransaction transaction = fragmentManager.beginTransaction();
-   fragment = NewsFragment.newInstance();
-   // tab 类型配置 start==
-   Bundle bundle = new Bundle();
-   bundle.putString(NewsFragment.ARGUMENT_TYPE, "news"); // 默认为news，只有一个信息流页面时可以不设置
-   bundle.putBoolean(NewsFragment.ARGUMENT_SWITCH, true); // 是否显示右下角的刷新按钮
-   fragment.setArguments(bundle);
-   // tab 类型配置 end==
+   fragment = NewsFragment.newInstance("news", false);
+   // 第一次参数是 tab类型，默认为news，只有一个信息流页面时可以不设置
+   // 第二个参数是 是否显示右下角的刷新按钮，默认false
    transaction.replace(R.id.container, fragment);
    transaction.commit();
    ```
@@ -126,13 +122,9 @@
    ```kotlin
    // kotlin
    val transaction = supportFragmentManager.beginTransaction()
-   val fragment = NewsFragment.newInstance()
-   // tab 类型配置 start==
-   val bundle = Bundle()
-   bundle.putString(NewsFragment.ARGUMENT_TYPE, "news") // 默认为news，只有一个信息流页面时可以不设置
-   bundle.putBoolean(NewsFragment.ARGUMENT_SWITCH, true) // 是否显示右下角的刷新按钮
-   fragment.arguments = bundle
-   // tab 类型配置 end==
+   val fragment = NewsFragment.newInstance("news", false)
+   // 第一次参数是 tab类型，默认为news，只有一个信息流页面时可以不设置
+   // 第二个参数是 是否显示右下角的刷新按钮，默认false
    transaction.replace(R.id.container, fragment)
    transaction.commit()
    ```

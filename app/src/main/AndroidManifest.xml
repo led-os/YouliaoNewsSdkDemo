@@ -52,7 +52,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="tencent1107937097" />
+                <data android:scheme="tencent1107990332" />
             </intent-filter>
         </activity>
         <activity
@@ -71,10 +71,14 @@
                 android:resource="@xml/gdt_file_path" />
         </provider>
 
+        <!--有料看看-->
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="d218a6b78a6c0a0c1975cac4cbb4a413" />
+            android:value="6170d769638131656010dc1184975182" />
 
+        <!--        <meta-data-->
+        <!--            android:name="com.amap.api.v2.apikey"-->
+        <!--            android:value="d218a6b78a6c0a0c1975cac4cbb4a413" />-->
 
         <activity
             android:name="com.baidu.mobads.AppActivity"

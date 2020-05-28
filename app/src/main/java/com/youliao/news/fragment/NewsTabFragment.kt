@@ -25,9 +25,6 @@ class NewsTabFragment : Fragment() {
     private fun setupNews() {
         val transaction = childFragmentManager.beginTransaction()
         val fragment = NewsFragment.newInstance()
-        val bundle = Bundle()
-        bundle.putString(NewsFragment.ARGUMENT_TYPE, "news")
-        fragment.arguments = bundle
         transaction.replace(R.id.container, fragment)
         transaction.commit()
     }

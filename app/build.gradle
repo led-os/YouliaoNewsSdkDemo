@@ -60,7 +60,7 @@ dependencies {
     implementation 'com.android.support:design:28.0.0'
     implementation 'com.android.support:multidex:1.0.3'
 
-    def youliao_version = "1.0.3-beta07"
+    def youliao_version = "1.0.3-rc04"
     implementation "com.youliao.sdk:news:$youliao_version"
     implementation "com.youliao.sdk:amaplocation:$youliao_version"
     implementation "com.youliao.sdk:msa:$youliao_version"
@@ -76,5 +76,5 @@ dependencies {
     // QQ
     implementation files('libs/open_sdk_r4de39fa_lite.jar')
 
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.2'
+//    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.2'
 }
