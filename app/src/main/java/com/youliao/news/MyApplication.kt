@@ -18,10 +18,10 @@ class MyApplication : Application() {
             init(this@MyApplication, "ffc2c212540d1370", "91492c9b2e6ac7d87713c85b83242449")
             showDebugLog(true)
             setShareAppId("1107990332", "wx8b0b139d1103eaa0")
-            // 可以依赖'com.youliao.sdk:msa:1.0.3-rc04'，或者自行实现OaidProvider接口
+            // 可以依赖'com.youliao.sdk:msa:1.0.4'，或者自行实现OaidProvider接口
             // 当前有料sdk接入的oaid sdk版本是 1.0.13
             setOaidProvider(MasOaidProvider(this@MyApplication))
-            // 可以依赖'com.youliao.sdk:amaplocation:1.0.3-rc04'，或者自行实现LocationProvider接口
+            // 可以依赖'com.youliao.sdk:amaplocation:1.0.4'，或者自行实现LocationProvider接口
             setLocationProvider(AMapLocationProvider(this@MyApplication))
             // 此方法会请求网络，如果有流量提醒弹框，可以在用户点击确认后再调用。不一定放在application中
             requestSdkConfig()

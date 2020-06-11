@@ -18,17 +18,21 @@
    ```groovy
    dependencies {
        // 增加下面依赖
-       implementation 'com.youliao.sdk:news:1.0.3-rc04'
+       implementation 'com.youliao.sdk:news:1.0.4-rc01'
        // 如果使用glide3.x，增加依赖
-       implementation 'com.youliao.sdk:glide3:1.0.3-rc04'
+       implementation 'com.youliao.sdk:glide3:1.0.4'
        // 如果使用glide4.x，增加依赖
-       implementation 'com.youliao.sdk:glide4:1.0.3-rc04'
+       implementation 'com.youliao.sdk:glide4:1.0.4'
    }
    ```
 
 3. 如果要使用adroi，并且之前没有接入过adroi sdk，请按照adroi sdk文档进行接入
+**注意**
+1.0.4版本对应的adroi sdk版本为`3.3.3`，请尽量保持一致，以免有兼容性问题
 
 4. 如果要使用穿山甲，并且之前没有接入过穿山甲 sdk，请按照穿山甲 sdk文档进行接入
+**注意**
+1.0.4版本对应的穿山甲 sdk版本为`3001`，请尽量保持一致，以免有兼容性问题
 
 ## 二、初始化及基本配置
 
@@ -36,13 +40,13 @@
 
    ```java
    // java
-   // 此方法不会请求网络，请放在Application中调用，appid和secret参数由有料提供
-   YouliaoNewsSdk.init(this, "appid", "apikey") 
+   // 此方法不会请求网络，请放在Application中调用，appid和secret参数由有料提供，channel由接入方填入
+   YouliaoNewsSdk.init(this, "appid", "apikey", "channel")
    	.setShareAppId("qqappid", "wxappid"); // qqappid，wxappid
-    // 可以依赖'com.youliao.sdk:msa:1.0.3-rc04'，或者自行实现OaidProvider接口
+    // 可以依赖'com.youliao.sdk:msa:1.0.4'，或者自行实现OaidProvider接口
     // 当前有料sdk接入的oaid sdk版本是 1.0.13
     .setOaidProvider(new MasOaidProvider(this))
-    // 可以依赖'com.youliao.sdk:amaplocation:1.0.3-rc04'，或者自行实现LocationProvider接口
+    // 可以依赖'com.youliao.sdk:amaplocation:1.0.4'，或者自行实现LocationProvider接口
     .setLocationProvider(new AMapLocationProvider(this));
    
    // 注意：此方法会请求网络，如果有流量提醒弹框，可以在用户点击确认后再调用。不一定放在application中
@@ -59,13 +63,13 @@
    ```kotlin
    // kotlin
    YouliaoNewsSdk.apply {
-     // 此方法不会请求网络，请放在Application中调用，appid和secret参数会在之后提供
-     init(this@MyApplication, "appid", "apikey")
+     // 此方法不会请求网络，请放在Application中调用，appid和secret参数会在之后提供，channel由接入方填入
+     init(this@MyApplication, "appid", "apikey", "channel")
      setShareAppId("qqappid","wxappid")
-     // 可以依赖'com.youliao.sdk:msa:1.0.3-rc04'，或者自行实现OaidProvider接口
+     // 可以依赖'com.youliao.sdk:msa:1.0.4'，或者自行实现OaidProvider接口
      // 当前有料sdk接入的oaid sdk版本是 1.0.13
      setOaidProvider(MasOaidProvider(this@MyApplication))
-     // 可以依赖'com.youliao.sdk:amaplocation:1.0.3-rc04'，或者自行实现LocationProvider接口
+     // 可以依赖'com.youliao.sdk:amaplocation:1.0.4'，或者自行实现LocationProvider接口
      setLocationProvider(AMapLocationProvider(this@MyApplication))
      // 注意：此方法会请求网络，如果有流量提醒弹框，可以在用户点击确认后再调用。不一定放在application中
      requestSdkConfig()
@@ -144,6 +148,20 @@
 3. 更换loading图
    在`res`->`mipmap`下覆盖`youliao_loading_logo.png`文件
    `注意`,每个dpi文件夹下都要覆盖
+
+4. 更换部分尺寸
+  在`res`->`values`->`dimens.xml`中覆盖以下字段
+  ```xml
+   <?xml version="1.0" encoding="utf-8"?>
+   <resources>
+    <!--顶部频道文字size-->
+    <dimen name="youliao_tab_title">17sp</dimen>
+    <!--新闻标题文字size-->
+    <dimen name="youliao_news_title">18sp</dimen>
+    <!--新闻左右边距-->
+    <dimen name="youliao_news_margin_horizontal">15dp</dimen>
+   </resources>
+  ```
 
 ## 四、其他
 1. for 最美天气
