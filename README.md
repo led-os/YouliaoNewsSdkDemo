@@ -18,7 +18,7 @@
    ```groovy
    dependencies {
        // 增加下面依赖
-       implementation 'com.youliao.sdk:news:1.0.4-rc01'
+       implementation 'com.youliao.sdk:news:1.0.4-rc02'
        // 如果使用glide3.x，增加依赖
        implementation 'com.youliao.sdk:glide3:1.0.4'
        // 如果使用glide4.x，增加依赖
@@ -47,11 +47,13 @@
     // 当前有料sdk接入的oaid sdk版本是 1.0.13
     .setOaidProvider(new MasOaidProvider(this))
     // 可以依赖'com.youliao.sdk:amaplocation:1.0.4'，或者自行实现LocationProvider接口
+    // 如果在NewsFragment.newInstance中有传入city，请不要再调用该方法
     .setLocationProvider(new AMapLocationProvider(this));
    
    // 注意：此方法会请求网络，如果有流量提醒弹框，可以在用户点击确认后再调用。不一定放在application中
    YouliaoNewsSdk.requestSdkConfig();
-   // 注意：此方法用于获取用户所在城市，请在获取定位权限后调用
+   // 注意：此方法用于获取用户所在城市，请在获取定位权限后调用。
+   // 如果在NewsFragment.newInstance中有传入city，请不要再调用该方法
    YouliaoNewsSdk.requestLocation();
    
    // 此方法用于初始化adroi sdk，如果已经接入过adroi sdk或不需要adroi广告，请忽略
@@ -70,10 +72,12 @@
      // 当前有料sdk接入的oaid sdk版本是 1.0.13
      setOaidProvider(MasOaidProvider(this@MyApplication))
      // 可以依赖'com.youliao.sdk:amaplocation:1.0.4'，或者自行实现LocationProvider接口
+     // 如果在NewsFragment.newInstance中有传入city，请不要再调用该方法
      setLocationProvider(AMapLocationProvider(this@MyApplication))
      // 注意：此方法会请求网络，如果有流量提醒弹框，可以在用户点击确认后再调用。不一定放在application中
      requestSdkConfig()
      // 注意：此方法用于获取用户所在城市，请在获取定位权限后调用
+     // 如果在NewsFragment.newInstance中有传入city，请不要再调用该方法
      requestLocation()
      
      // 此方法用于初始化adroi sdk，如果已经接入过adroi sdk或不需要adroi广告，请忽略
@@ -116,9 +120,10 @@
    // java
    FragmentManager fragmentManager = getSupportFragmentManager();
    FragmentTransaction transaction = fragmentManager.beginTransaction();
-   fragment = NewsFragment.newInstance("news", false);
+   fragment = NewsFragment.newInstance("news", false, "上海");
    // 第一次参数是 tab类型，默认为news，只有一个信息流页面时可以不设置
    // 第二个参数是 是否显示右下角的刷新按钮，默认false
+   // 第三个参数是 城市名称，当在这里传入城市时，不要再调用requestLocation也不要调用setLocationProvider
    transaction.replace(R.id.container, fragment);
    transaction.commit();
    ```
@@ -126,9 +131,10 @@
    ```kotlin
    // kotlin
    val transaction = supportFragmentManager.beginTransaction()
-   val fragment = NewsFragment.newInstance("news", false)
+   val fragment = NewsFragment.newInstance("news", false, "上海")
    // 第一次参数是 tab类型，默认为news，只有一个信息流页面时可以不设置
    // 第二个参数是 是否显示右下角的刷新按钮，默认false
+   // 第三个参数是 城市名称，当在这里传入城市时，不要再调用requestLocation也不要调用setLocationProvider
    transaction.replace(R.id.container, fragment)
    transaction.commit()
    ```
