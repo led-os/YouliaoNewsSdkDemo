@@ -18,7 +18,7 @@
    ```groovy
    dependencies {
        // 增加下面依赖
-       implementation 'com.youliao.sdk:news:1.0.4-rc02'
+       implementation 'com.youliao.sdk:news:1.0.4-rc06'
        // 如果使用glide3.x，增加依赖
        implementation 'com.youliao.sdk:glide3:1.0.4'
        // 如果使用glide4.x，增加依赖
