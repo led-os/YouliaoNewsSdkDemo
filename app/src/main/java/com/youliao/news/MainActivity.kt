@@ -1,5 +1,6 @@
 package com.youliao.news
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
@@ -7,6 +8,10 @@ import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import com.youliao.news.fragment.NewsTabFragment
 import com.youliao.news.fragment.VideoTabFragment
+import com.youliao.sdk.news.YouliaoNewsSdk
+import com.youliao.sdk.news.data.bean.NewsBean
+import com.youliao.sdk.news.data.bean.TabBean
+import com.youliao.sdk.news.provider.ClickActionProvider
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         fragments.add(VideoTabFragment())
         val myFragmentPagerAdapter = MyFragmentPagerAdapter(supportFragmentManager, fragments)
         viewpager.adapter = myFragmentPagerAdapter
-        viewpager.addOnPageChangeListener(object :ViewPager.OnPageChangeListener {
+        viewpager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(p0: Int) {
             }
 
@@ -41,14 +46,19 @@ class MainActivity : AppCompatActivity() {
                     else -> R.id.navigation_news
                 }
             }
+        })
 
+        YouliaoNewsSdk.setClickActionProvider(object : ClickActionProvider {
+            override fun onItemClick(newsBean: NewsBean, type: String, tabBean: TabBean?) {
+                WebViewDemoActivity.start(this@MainActivity, newsBean)
+            }
         })
     }
 
     private fun initBottomNavigation() {
         bottomNavigationView = findViewById(R.id.nav_view)
         bottomNavigationView.setOnNavigationItemSelectedListener {
-            when(it.itemId) {
+            when (it.itemId) {
                 R.id.navigation_news -> {
                     viewpager.currentItem = 0
                     true

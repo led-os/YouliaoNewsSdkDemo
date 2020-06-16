@@ -176,6 +176,21 @@
 
    示例请见demo下的java文件夹
 
-2. 关于混淆
+2. for 浅言
+    获取金币示例：app/src/main/java/com/youliao/news/view
+    app/src/main/java/com/youliao/news/WebViewDemoActivity.kt
+    ``` kotlin
+    // 以下是设置新闻点击回调
+    YouliaoNewsSdk.setClickActionProvider(object : ClickActionProvider {
+        override fun onItemClick(newsBean: NewsBean, type: String, tabBean: TabBean?) {
+            val intent = Intent(this@MainActivity, WebViewDemoActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.putExtra("bean", newsBean)
+            startActivity(intent)
+        }
+    })
+    ```
+
+3. 关于混淆
     混淆规则已经打在aar包里
 

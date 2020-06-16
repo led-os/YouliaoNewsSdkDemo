@@ -14,6 +14,11 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        packagingOptions {
+            exclude 'META-INF/kotlinx-coroutines-core.kotlin_module'
+            exclude 'res/cp_ad_txt.png'
+        }
+        multiDexEnabled true
     }
     signingConfigs {
         releaseConfig {
@@ -39,12 +44,8 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    defaultConfig {
-        packagingOptions {
-            exclude 'META-INF/kotlinx-coroutines-core.kotlin_module'
-            exclude 'res/cp_ad_txt.png'
-        }
-        multiDexEnabled true
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
     repositories {
         flatDir {
@@ -61,7 +62,7 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.3'
 
     def youliao_version = "1.0.4"
-    implementation "com.youliao.sdk:news:1.0.4-rc01"
+    implementation "com.youliao.sdk:news:1.0.4-rc06"
     implementation "com.youliao.sdk:amaplocation:$youliao_version"
     implementation "com.youliao.sdk:msa:$youliao_version"
     implementation "com.youliao.sdk:glide3:$youliao_version"
