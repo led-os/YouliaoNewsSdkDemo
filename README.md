@@ -18,7 +18,7 @@
    ```groovy
    dependencies {
        // 增加下面依赖
-       implementation 'com.youliao.sdk:news:1.0.4-rc06'
+       implementation 'com.youliao.sdk:news:1.0.5-rc01'
        // 如果使用glide3.x，增加依赖
        implementation 'com.youliao.sdk:glide3:1.0.4'
        // 如果使用glide4.x，增加依赖
@@ -28,11 +28,16 @@
 
 3. 如果要使用adroi，并且之前没有接入过adroi sdk，请按照adroi sdk文档进行接入
 **注意**
-1.0.4版本对应的adroi sdk版本为`3.3.3`，请尽量保持一致，以免有兼容性问题
+1.0.5版本对应的adroi sdk版本为`3.3.4`，请尽量保持一致，以免有兼容性问题
 
 4. 如果要使用穿山甲，并且之前没有接入过穿山甲 sdk，请按照穿山甲 sdk文档进行接入
 **注意**
 由于穿山甲sdk最新版本3004存在问题，请先保持现有版本不变
+
+5. 如果要使用穿山甲小视频sdk，并且之前没有接入过穿山甲 sdk，请按照穿山甲 sdk文档进行接入
+    接入文档在本demo的顶层目录下`内容合作Sdk_Android_1.9.0.0.zip`
+**注意**
+只需要添加相应的sdk接口，初始化方法的封装在下文中提供
 
 ## 二、初始化及基本配置
 
@@ -60,6 +65,9 @@
    YouliaoNewsSdk.initAdroi("adroi-appid", "ADroi广告demo")
    // 此方法用于初始化穿山甲sdk，如果已经接入过穿山甲sdk或不需要穿山甲广告，请忽略
    YouliaoNewsSdk.initBytedanceAd("bytedance-appid", "有料看看_测试_android");
+
+    // 此方法用于初始化穿山甲小视频sdk，如果接入穿山甲小视频sdk必须调用此方法，参数有料会提供
+    YouliaoNewsSdk.initBytedanceDp("appId", "secureKey", "partner", "appLogId");
    ```
 
    ```kotlin
@@ -84,6 +92,9 @@
      initAdroi("adroi-appid", "ADroi广告demo")
      // 此方法用于初始化穿山甲sdk，如果已经接入过穿山甲sdk或不需要穿山甲广告，请忽略
      initBytedanceAd("bytedance-appid", "有料看看_测试_android")
+
+     // 此方法用于初始化穿山甲小视频sdk，如果接入穿山甲小视频sdk必须调用此方法，参数有料会提供
+     initBytedanceDp("appId", "secureKey", "partner", "appLogId")
    }
    ```
 

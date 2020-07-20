@@ -37,6 +37,8 @@ class MyApplication : Application() {
 //            initAdroi("a8b3a9047", "有料看看_android")
             // 此方法用于初始化穿山甲sdk，如果已经接入过穿山甲sdk或不需要穿山甲广告，请忽略
             initBytedanceAd("5011189", "有料看看_测试_android")
+            // 此方法用于初始化穿山甲小视频sdk，如果接入穿山甲小视频sdk必须调用此方法，参数有料会提供
+            initBytedanceDp("appId", "secureKey", "partner", "appLogId")
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             WebView.setWebContentsDebuggingEnabled(true)

@@ -27,10 +27,12 @@ public class JavaMyApplication extends Application {
         // 此方法用于获取用户所在城市
         YouliaoNewsSdk.requestLocation();
 
-        // 此方法初始化adroi sdk，如果已经接入过adroi sdk或不需要adroi广告，请忽略
+        // 此方法用于初始化adroi sdk，如果已经接入过adroi sdk或不需要adroi广告，请忽略
 //        YouliaoNewsSdk.initAdroi("a8b3a9047", "ADroi广告demo")
-        // 此方法用户初始化穿山甲sdk，如果已经接入过穿山甲sdk或不需要穿山甲广告，请忽略
+        // 此方法用于初始化穿山甲sdk，如果已经接入过穿山甲sdk或不需要穿山甲广告，请忽略
         YouliaoNewsSdk.initBytedanceAd("5011189", "有料看看_测试_android");
+        // 此方法用于初始化穿山甲小视频sdk，如果接入穿山甲小视频sdk必须调用此方法，参数有料会提供
+        YouliaoNewsSdk.initBytedanceDp("appId", "secureKey", "partner", "appLogId");
     }
 
     @Override
