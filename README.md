@@ -10,6 +10,7 @@
            jcenter()
          	// 增加下面一行
            maven { url "https://github.com/YouliaoSdk/Sdk/raw/master/"}
+           // 内部使用的maven地址单独给出
        }
    }
    ```
@@ -18,7 +19,7 @@
    ```groovy
    dependencies {
        // 增加下面依赖
-       implementation 'com.youliao.sdk:news:1.0.5-rc01'
+       implementation 'com.youliao.sdk:news:1.0.7-rc04'
        // 如果使用glide3.x，增加依赖
        implementation 'com.youliao.sdk:glide3:1.0.4'
        // 如果使用glide4.x，增加依赖
@@ -28,16 +29,12 @@
 
 3. 如果要使用adroi，并且之前没有接入过adroi sdk，请按照adroi sdk文档进行接入
 **注意**
-1.0.5版本对应的adroi sdk版本为`3.3.4`，请尽量保持一致，以免有兼容性问题
+1.0.7-rc04版本对应的adroi sdk版本为`3.4.5`，请尽量保持一致，以免有兼容性问题
 
-4. 如果要使用穿山甲，并且之前没有接入过穿山甲 sdk，请按照穿山甲 sdk文档进行接入
+4. 如果要使用穿山甲小视频sdk，并且之前没有接入过穿山甲 sdk，请按照穿山甲 sdk文档进行接入
+    接入文档在本demo的顶层目录下`内容合作Sdk_Android_2.2.1.0.zip`
 **注意**
-由于穿山甲sdk最新版本3004存在问题，请先保持现有版本不变
-
-5. 如果要使用穿山甲小视频sdk，并且之前没有接入过穿山甲 sdk，请按照穿山甲 sdk文档进行接入
-    接入文档在本demo的顶层目录下`内容合作Sdk_Android_1.9.0.0.zip`
-**注意**
-只需要添加相应的sdk接口，初始化方法的封装在下文中提供
+只需要添加相应的sdk，初始化方法的封装在下文中提供
 
 ## 二、初始化及基本配置
 
@@ -63,8 +60,6 @@
    
    // 此方法用于初始化adroi sdk，如果已经接入过adroi sdk或不需要adroi广告，请忽略
    YouliaoNewsSdk.initAdroi("adroi-appid", "ADroi广告demo")
-   // 此方法用于初始化穿山甲sdk，如果已经接入过穿山甲sdk或不需要穿山甲广告，请忽略
-   YouliaoNewsSdk.initBytedanceAd("bytedance-appid", "有料看看_测试_android");
 
     // 此方法用于初始化穿山甲小视频sdk，如果接入穿山甲小视频sdk必须调用此方法，参数有料会提供
     YouliaoNewsSdk.initBytedanceDp("appId", "secureKey", "partner", "appLogId");
@@ -90,8 +85,6 @@
      
      // 此方法用于初始化adroi sdk，如果已经接入过adroi sdk或不需要adroi广告，请忽略
      initAdroi("adroi-appid", "ADroi广告demo")
-     // 此方法用于初始化穿山甲sdk，如果已经接入过穿山甲sdk或不需要穿山甲广告，请忽略
-     initBytedanceAd("bytedance-appid", "有料看看_测试_android")
 
      // 此方法用于初始化穿山甲小视频sdk，如果接入穿山甲小视频sdk必须调用此方法，参数有料会提供
      initBytedanceDp("appId", "secureKey", "partner", "appLogId")
@@ -134,7 +127,7 @@
    fragment = NewsFragment.newInstance("news", false, "上海");
    // 第一次参数是 tab类型，默认为news，只有一个信息流页面时可以不设置
    // 第二个参数是 是否显示右下角的刷新按钮，默认false
-   // 第三个参数是 城市名称，当在这里传入城市时，不要再调用requestLocation也不要调用setLocationProvider
+   // 第三个参数是 城市名称，当在这里传入城市时，不要再调用requestLocation也不要调用setLocationProvider，正常情况下不要填写这个参数
    transaction.replace(R.id.container, fragment);
    transaction.commit();
    ```
@@ -145,7 +138,7 @@
    val fragment = NewsFragment.newInstance("news", false, "上海")
    // 第一次参数是 tab类型，默认为news，只有一个信息流页面时可以不设置
    // 第二个参数是 是否显示右下角的刷新按钮，默认false
-   // 第三个参数是 城市名称，当在这里传入城市时，不要再调用requestLocation也不要调用setLocationProvider
+   // 第三个参数是 城市名称，当在这里传入城市时，不要再调用requestLocation也不要调用setLocationProvider，正常情况下不要填写这个参数
    transaction.replace(R.id.container, fragment)
    transaction.commit()
    ```
